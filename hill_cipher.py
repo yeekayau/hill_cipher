@@ -10,12 +10,14 @@ plain_text = st.text_area("Enter plain text for encryption")
 
 n = st.text_input("Enter the dimensions of the matrix")
 
-st.markdown("Here is a random inveritible matrix key: ")
+if plain_text and n:
 
-A = hcf.random_invertible_matrix(n)
-A
+	st.markdown("Here is a random inveritible matrix key: ")
 
-st.markdown("Here is the encrypted text in blocks: ")
+	A = hcf.random_invertible_matrix(n)
+	A
 
-blocks = hcf.encrypt_blocks(hcf.plain_text_prep(plain_text), A))
-blocks
+	st.markdown("Here is the encrypted text in blocks: ")
+
+	blocks = hcf.encrypt_blocks(hcf.plain_text_prep(plain_text), A)
+	blocks
