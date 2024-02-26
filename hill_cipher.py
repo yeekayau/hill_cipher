@@ -1,6 +1,8 @@
 import streamlit as st
 import random
 import string
+import numpy as np
+from numpy.linalg import inv
 
 import hill_cipher_functions as hcf
 
