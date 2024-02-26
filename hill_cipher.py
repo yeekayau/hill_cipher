@@ -17,7 +17,7 @@ if plain_text and n:
 	st.markdown("Here is a random inveritible matrix key: ")
 
 	A = hcf.random_invertible_matrix(int(n))
-	A
+	st.write(A)
 
 	st.markdown("Here is the encrypted text in blocks: ")
 
