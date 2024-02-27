@@ -19,16 +19,16 @@ if plain_text and n:
 	A = hcf.random_invertible_matrix(int(n))
 	st.write(A)
 
-	st.markdown("Here is the plain text encrypted as numbers (mod 26): ")
+	st.markdown("Here is the plain text encrypted as numbers (mod 26) - ignore the first row and column: ")
 
 	cleaned_text = hcf.plain_text_prep(plain_text)
 	encoded_text = hcf.partition_and_numberfy(cleaned_text, int(n))
 	st.table(encoded_text)
 
-	st.markdown("Here is the encrypted text in blocks (The rows correspond to reading the text from left to right): ")
+	st.markdown("Here is the encrypted text in blocks (The rows correspond to reading the text from left to right, agian ignore the first row and column for now): ")
 
 	blocks = hcf.encrypt_blocks(cleaned_text, A)
-	blocks
+	st.table(blocks)
 
 	st.markdown("Here is the encrypted text: ")
 
