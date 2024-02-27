@@ -67,7 +67,7 @@ def partition_and_numberfy(cleaned_text, n):
     num_randoms_needed = (len(cleaned_text)//n + 1)*n - len(numberfied)
 
     for i in range(num_randoms_needed):
-      numberfied.append(random.randint(0,25)) # add some random letters
+      numberfied.append(random.randint(0,26)) # add some random letters
 
   return [ numberfied[i:i+n] for i in [k*n for k in range(0, len(cleaned_text)//n + 1)] if i != len(numberfied) ]
 
@@ -94,9 +94,9 @@ def encrypt_blocks(input_text, A):
   encrypted = [np.dot(A,np.array(r)) for r in encoded_blocks]
   
   # Reduce entries mod 25
-  encrypted_mod25 = [r%25 for r in encrypted]
+  encrypted_mod26 = [r%26 for r in encrypted]
 
-  return encrypted_mod25
+  return encrypted_mod26
 
 
 def encrypt_hill(input_text, A):
