@@ -25,7 +25,7 @@ if plain_text and n:
 	encoded_text = hcf.partition_and_numberfy(cleaned_text, int(n))
 	st.table(encoded_text)
 
-	st.markdown("Here is the encrypted text in blocks (The rows correspond to reading the text from left to right, agian ignore the first row and column for now): ")
+	st.markdown("Here is the encrypted text in blocks, mod 26 (The rows correspond to reading the text from left to right, agian ignore the first row and column for now): ")
 
 	blocks = hcf.encrypt_blocks(cleaned_text, A)
 	st.table(blocks)
