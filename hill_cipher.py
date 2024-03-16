@@ -19,18 +19,18 @@ if plain_text and n:
 	A = hcf.generate_invertible_matrix_mod26(int(n))
 	st.write(A)
 
+
 	st.markdown("Here is the plain text encrypted as numbers (mod 26) - ignore the first row and column: ")
 
 	cleaned_text = hcf.plain_text_prep(plain_text)
-	encoded_text = hcf.partition_and_numberfy(cleaned_text, int(n))
-	st.table(encoded_text)
+	encoded_blocks = hcf.partition_and_numberfy(cleaned_text, int(n))
+	
+	letters_and_numbers = zip([i for i in cleaned_text], [i for k in encoded_blocks for i in k])
 
-	st.markdown("Here is the encrypted text in blocks, mod 26 (The rows correspond to reading the text from left to right, again ignore the first row and column for now): ")
+	st.write("Plain text and encoded text (mod 26:")
+		for item in letters_and_numbers:
+    		st.write(item[0], end=' ')  # Print the first entry of the tuple
 
-	blocks = hcf.encrypt_blocks(cleaned_text, A)
-	st.table(blocks)
+		for item in letters_and_numbers:  # Re-zip since it was consumed in the previous loop
+    		st.write(item[1], end=' ')  # Print the second entry of the tuple
 
-	st.markdown("Here is the encrypted text: ")
-
-	cipher_text = hcf.encrypt_hill(cleaned_text, A)
-	cipher_text
