@@ -14,9 +14,9 @@ n = st.text_input("Enter the dimensions of the matrix")
 
 if plain_text and n:
 
-	st.markdown("Here is a random inveritible matrix key: (ignore the first row for now)")
+	st.markdown("Here is a random inveritible matrix modulo 26: (ignore the first row for now)")
 
-	A = hcf.random_invertible_matrix(int(n))
+	A = hcf.generate_invertible_matrix_mod26(int(n))
 	st.write(A)
 
 	st.markdown("Here is the plain text encrypted as numbers (mod 26) - ignore the first row and column: ")
@@ -25,7 +25,7 @@ if plain_text and n:
 	encoded_text = hcf.partition_and_numberfy(cleaned_text, int(n))
 	st.table(encoded_text)
 
-	st.markdown("Here is the encrypted text in blocks, mod 26 (The rows correspond to reading the text from left to right, agian ignore the first row and column for now): ")
+	st.markdown("Here is the encrypted text in blocks, mod 26 (The rows correspond to reading the text from left to right, again ignore the first row and column for now): ")
 
 	blocks = hcf.encrypt_blocks(cleaned_text, A)
 	st.table(blocks)

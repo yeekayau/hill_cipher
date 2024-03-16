@@ -3,26 +3,15 @@ import string
 import numpy as np
 from numpy.linalg import inv
 
-def random_invertible_matrix(n):
-  """
-  Generates a random n by n invertible integer valued matrix.
+def generate_invertible_matrix_mod26(n):
+    while True:
+        # Generate a random matrix of size nxn with elements modulo 26
+        matrix = np.random.randint(0, 26, size=(n, n))
 
-  Args:
-      n: The size of the matrix.
-
-  Returns:
-      A random n by n invertible integer valued matrix.
-  """
-
-  # Generate a random integer matrix.
-  matrix = np.random.randint(0, 200, size=(n, n))
-
-  # Check if the matrix is invertible.
-  while not np.linalg.det(matrix):
-    matrix = np.random.randint(0, 200, size=(n, n))
-
-  # Return the invertible matrix.
-  return matrix
+        # Check if the determinant of the matrix is invertible modulo 26
+        det = int(round(np.linalg.det(matrix))) % 26
+        if det != 0 and np.gcd(det, 26) == 1:
+            return matrix
 
 
 def plain_text_prep(text):
