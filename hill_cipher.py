@@ -29,14 +29,23 @@ if plain_text and n:
 
 	everything = zip([i for i in plain_text], [i for k in blocks for i in k], [i for k in encrypted_blocks for i in k], [i for i in cipher_text])
 
+	
+	# Display table in Streamlit
+	st.write("Data:")
+	st.write("This table displays the following information:")
+	# List of items
+	items = ["Row 1: Your plain text.", "Row 2: Your plain text modulo 26", "Row 3: The cipher text encoded with integers mod 26", "Row 4: Your cipher text in letters."]
+
+	# Display bullet point list
+	for item in items:
+    	st.write(f"- {item}")
+	
 	# Convert zip object to a list of lists
 	table_data = list(everything)
 
 	# Transpose the table_data to have each tuple element as a separate row
 	transposed_data = list(map(list, zip(*table_data)))
 
-	# Display table in Streamlit
-	st.write("Table Display:")
-	st.table(transposed_data)
+	st.table(transposed_data)	
 
 
