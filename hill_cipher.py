@@ -19,13 +19,13 @@ if plain_text and n:
 	key = hcf.generate_invertible_matrix_mod26(int(n))
 	st.write(key)
 
-	plain_text = plain_text_prep(plain_text)
+	plain_text = hcf.plain_text_prep(plain_text)
 
-	blocks = partition_and_numberfy(plain_text, int(n))
+	blocks = hcf.partition_and_numberfy(plain_text, int(n))
 
-	encrypted_blocks = encrypt_blocks(plain_text, key)
+	encrypted_blocks = hcf.encrypt_blocks(plain_text, key)
 
-	cipher_text = encrypt_hill(plain_text, key)
+	cipher_text = hcf.encrypt_hill(plain_text, key)
 
 	everything = zip([i for i in plain_text], [i for k in blocks for i in k], [i for k in encrypted_blocks for i in k], [i for i in cipher_text])
 
