@@ -38,7 +38,7 @@ if plain_text and n:
 
 	# Display bullet point list
 	for item in items:
-    	st.write(f"- {item}")
+		st.write(f"- {item}")
 	
 	# Convert zip object to a list of lists
 	table_data = list(everything)
