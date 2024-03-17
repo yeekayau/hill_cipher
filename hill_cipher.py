@@ -16,23 +16,27 @@ if plain_text and n:
 
 	st.markdown("Here is a random inveritible matrix modulo 26: (ignore the first row for now)")
 
-	A = hcf.generate_invertible_matrix_mod26(int(n))
-	st.write(A)
+	key = hcf.generate_invertible_matrix_mod26(int(n))
+	st.write(key)
 
+	plain_text = plain_text_prep(plain_text)
 
-	st.markdown("Here is the plain text encrypted as numbers (mod 26) - ignore the first row and column: ")
+	blocks = partition_and_numberfy(plain_text, int(n))
 
-	cleaned_text = hcf.plain_text_prep(plain_text)
-	encoded_blocks = hcf.partition_and_numberfy(cleaned_text, int(n))
-	
-	letters_and_numbers = zip([i for i in cleaned_text], [i for k in encoded_blocks for i in k])
+	encrypted_blocks = encrypt_blocks(plain_text, key)
 
-	st.write("Plain text and encoded text (mod 26:")
-	
-	# Convert zipped object to a list of lists
-	grid_data = list(map(list, zip(*letters_and_numbers)))
+	cipher_text = encrypt_hill(plain_text, key)
 
-	# Display grid in Streamlit
-	st.write("Grid Display:")
-	st.write(grid_data)
+	everything = zip([i for i in plain_text], [i for k in blocks for i in k], [i for k in encrypted_blocks for i in k], [i for i in cipher_text])
+
+	# Convert zip object to a list of lists
+	table_data = list(everything)
+
+	# Transpose the table_data to have each tuple element as a separate row
+	transposed_data = list(map(list, zip(*table_data)))
+
+	# Display table in Streamlit
+	st.write("Table Display:")
+	st.table(transposed_data)
+
 
